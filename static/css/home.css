@@ -1,0 +1,61 @@
+:root {
+  --bg-dark: #0a0a0a;
+  --bg-darker: #1a1a1a;
+  --very-dark-gray: rgba(20, 20, 20, 0.9);
+  --border-gray: #333333;
+  --white: #ffffff;
+  --placeholder: #888888;
+  --primary: #4ade80;
+  --primary-hover: #22c55e;
+  --error-border: #ef4444;
+  --error-text: #fca5a5;
+  --error-bg: rgba(239, 68, 68, 0.1);
+  --translucent-white: rgba(255, 255, 255, 0.1);
+  --focus-glow: rgba(74, 222, 128, 0.1);
+  --black-shadow: rgba(0, 0, 0, 0.5);
+  --green-shadow: rgba(74, 222, 128, 0.3);
+}
+
+/* Navbar brand styling */
+.navbar-brand {
+  font-weight: bold;
+  font-size: 1.5rem;
+  letter-spacing: 1px;
+  color: var(--primary); /* Highlighted brand color */
+}
+
+/* Accordion styling */
+.accordion-button {
+  font-weight: 500;
+  color: var(--white); /* White text */
+  background-color: #222; /* Slightly lighter than very-dark-gray */
+  border: 1px solid var(--border-gray); /* Optional, adds separation */
+}
+
+.accordion-button:focus {
+  box-shadow: 0 0 0 3px var(--focus-glow); /* Matches input focus */
+  border-color: var(--primary);
+}
+
+.accordion-item {
+  border: none;
+  background-color: var(--very-dark-gray);
+}
+
+.accordion-body {
+  color: var(--white);
+  background-color: var(--translucent-white);
+}
+
+.accordion-body p {
+  margin: 0;
+}
+
+/* Modal styling */
+.modal-content {
+  background-color: var(--very-dark-gray);
+  color: var(--border-gray);
+  border-radius: 1rem;
+  border: 1px solid var(--border-gray);
+  box-shadow: 0 8px 16px var(--black-shadow); /* Consistent drop shadow */
+}

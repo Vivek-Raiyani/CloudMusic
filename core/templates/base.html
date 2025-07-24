@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>{% block title %}Voices{% endblock %}</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- HTMX & Bootstrap -->
+    <script src="https://unpkg.com/htmx.org@1.9.2"></script>
+    {% load bootstrap5 static %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+    <!-- App CSS -->
+    <link rel="stylesheet" href="{% static '/css/player.css' %}" />
+    {% block extra_css %}{% endblock %}
+  </head>
+
+  <body style="margin-bottom: 125px;">
+    {% block content %}{% endblock %}
+    
+    <!-- App JS -->
+    <script src="{% static '/js/player.js' %}"></script>
+    {% block extra_js %}{% endblock %}
+  </body>
+</html>

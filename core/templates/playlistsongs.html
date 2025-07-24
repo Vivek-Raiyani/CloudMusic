@@ -1,0 +1,127 @@
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'your_app/css/playlist.css' %}">
+
+<!-- ads -->
+<section class="w-100 bg-dark m-2" style="height: 150px">Ads section</section>
+
+<!-- Playlist Hero Section -->
+<article class="playlist-hero d-flex gap-4 align-items-center p-2">
+  <img
+    src="{{ playlist.banner|default:'https://cdn.pixabay.com/photo/2016/11/21/12/59/vinyl-1845272_1280.jpg' }}"
+    alt="cover"
+    height="120"
+    width="120"
+    class="rounded-circle"
+  />
+
+  <div class="flex-grow-1">
+    <h3 class="mb-2">{{ playlist.title|default:"All Songs" }}</h3>
+
+    <div class="playlist-controls">
+      <button class="btn btn-success playlist-play">▶️ Play</button>
+      <button class="btn btn-outline-primary playlist-play-suffle">🔀 Shuffle</button>
+
+      {% if playlist.id %}
+      <button
+        class="btn btn-outline-warning"
+        data-bs-toggle="modal"
+        data-bs-target="#PlaylistAddModal"
+        hx-post="{% url 'song_list' %}"
+        hx-vals='{"csrfmiddlewaretoken":"{{csrf_token}}","playlist_id":"{{ playlist.id }}"}'
+        hx-target="#AddSongList"
+        hx-swap="innerHTML"
+      >
+        ➕ Add Song
+      </button>
+      {% endif %}
+    </div>
+  </div>
+
+  <div class="text-end d-none d-md-block" style="min-width: 200px;">
+    <!-- Placeholder for ads -->
+    <small>Advertisement Block</small>
+  </div>
+</article>
+
+<hr>
+
+<!-- Song Grid -->
+<div class="container-fluid" style="max-height: 60vh; overflow-y: auto" id="song-list">
+  <div class="row g-3">
+    {% for song in songs %}
+    <div class="col-6 col-sm-4 col-md-3 col-lg-2" id="song-div-{{ song.id }}">
+      <div class="card bg-dark text-white h-100 border-0 rounded shadow-sm">
+        <img
+          src="{{ song.banner }}"
+          alt="{{ song.title }}"
+          class="card-img-top playsong"
+          data-id="{{ song.id }}"
+          data-url="{{ MEDIA_URL }}{{ song.url }}"
+          data-title="{{ song.title }}"
+          data-banner="{{ song.banner }}"
+          data-artists="{{ song.artists|default:'' }}"
+        />
+        <div class="card-body p-2 d-flex justify-content-between align-items-center">
+          <h6 class="card-title text-truncate mb-0">{{ song.title }}</h6>
+          <div class="d-flex align-items-center">
+            <button
+              hx-post="{% url 'like-song' %}"
+              hx-vals='{"csrfmiddlewaretoken":"{{csrf_token}}","song_id":"{{ song.id }}"}'
+              hx-target="#like-icon-{{ song.id }}"
+              hx-swap="innerHTML"
+              class="like-btn btn "
+            >
+              <span id="like-icon-{{ song.id }}">
+                {% if song.liked %}❤️{% else %}🤍{% endif %}
+              </span>
+            </button>
+
+            {% if playlist.id %}
+            <button
+              class="btn btn-sm "
+              hx-post="{% url 'remove-from-playlist' %}"
+              hx-vals='{"csrfmiddlewaretoken":"{{csrf_token}}","song_id":"{{ song.id }}", "playlist_id":"{{ playlist.id }}"}'
+              hx-target="#song-div-{{ song.id }}"
+              hx-swap="outerHTML"
+            >
+              🗑
+            </button>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+<!-- Add Song Modal -->
+<div
+  class="modal fade"
+  id="PlaylistAddModal"
+  tabindex="-1"
+  aria-labelledby="PlaylistAddModalLabel"
+  aria-hidden="true"
+  data-bs-backdrop="static"
+>
+  <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="PlaylistAddModalLabel">Add Songs</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" id="AddSongList">
+        <p class="text-muted">Loading...</p>
+      </div>
+      <div class="modal-footer">
+        <!-- Optional: Add Save/Close button -->
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- {% block extra_js %}
+<script src="{% static 'your_app/js/playlist.js' %}"></script>
+{% endblock %} -->

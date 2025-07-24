@@ -1,0 +1,66 @@
+:root {
+  --bg-dark: #0a0a0a;
+  --bg-darker: #1a1a1a;
+  --very-dark-gray: rgba(20, 20, 20, 0.9);
+  --border-gray: #333333;
+  --white: #ffffff;
+  --placeholder: #888888;
+  --primary: #4ade80;
+  --primary-hover: #22c55e;
+  --error-border: #ef4444;
+  --error-text: #fca5a5;
+  --error-bg: rgba(239, 68, 68, 0.1);
+  --translucent-white: rgba(255, 255, 255, 0.1);
+  --focus-glow: rgba(74, 222, 128, 0.1);
+  --black-shadow: rgba(0, 0, 0, 0.5);
+  --green-shadow: rgba(74, 222, 128, 0.3);
+  --blue: #007bff;
+  --blue-bg-hover: rgba(0, 123, 255, 0.3);
+}
+
+.playlist-hero {
+  height: 250px;
+  background: linear-gradient(to right, var(--bg-darker), #000000);
+  color: var(--white);
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 1rem;
+}
+
+.playlist-hero img {
+  border: 3px solid var(--white);
+  object-fit: cover;
+}
+
+.playlist-controls button {
+  margin-right: 10px;
+}
+
+.card.bg-dark {
+  background-color: var(--very-dark-gray); /* ensures color consistency */
+  transition: transform 0.3s ease;
+  color: var(--white);
+}
+
+.card.bg-dark:hover {
+  transform: scale(1.03);
+  box-shadow: 0 6px 20px var(--blue-bg-hover);
+}
+
+.card-title {
+  font-size: 0.95rem;
+  color: var(--white);
+}
+
+.like-btn {
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  color: var(--white);
+  transition: transform 0.2s ease;
+}
+
+.like-btn:hover {
+  transform: scale(1.2);
+  color: var(--primary);
+}

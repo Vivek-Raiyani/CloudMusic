@@ -1,0 +1,86 @@
+:root {
+  --bg-dark: #0a0a0a;
+  --bg-darker: #1a1a1a;
+  --very-dark-gray: rgba(20, 20, 20, 0.9);
+  --border-gray: #333333;
+  --white: #ffffff;
+  --placeholder: #888888;
+  --primary: #4ade80;
+  --primary-hover: #22c55e;
+  --error-border: #ef4444;
+  --error-text: #fca5a5;
+  --error-bg: rgba(239, 68, 68, 0.1);
+  --translucent-white: rgba(255, 255, 255, 0.1);
+  --focus-glow: rgba(74, 222, 128, 0.1);
+  --black-shadow: rgba(0, 0, 0, 0.5);
+  --green-shadow: rgba(74, 222, 128, 0.3);
+  --progress-bg: rgba(255, 255, 255, 0.3);
+  --progress-fill: var(--primary); /* or use a distinct color if needed */
+  --highlight-bg: rgba(74, 222, 128, 0.1);
+  --highlight-active: rgba(74, 222, 128, 0.2);
+}
+
+/* Music progress bar container */
+.music-progress {
+  height: 4px;
+  background: var(--progress-bg);        /* translucent white */
+  border-radius: 2px;
+  overflow: hidden;
+  margin: 10px 0 5px 0;
+}
+
+/* The actual progress fill bar */
+.progress-bar {
+  height: 100%;
+  background: var(--primary);            /* green progress fill */
+  width: 0%;
+  transition: width 0.1s ease;
+}
+
+/* Time display below or beside progress */
+.time-display {
+  font-size: 12px;
+  color: var(--placeholder);             /* light gray */
+}
+
+/* Playback button style */
+.player-btn {
+  border: none;
+  background: transparent;
+  color: var(--white);                   /* default button color */
+  font-size: 18px;
+  padding: 8px 12px;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.player-btn:hover {
+  background: var(--translucent-white);  /* hover background */
+  transform: scale(1.1);
+}
+
+.player-btn.active {
+  color: var(--primary);                 /* green active state */
+}
+
+/* Volume slider */
+.volume-control {
+  width: 80px;
+}
+
+/* Loading spinner */
+.loading-spinner {
+  display: none;
+  color: var(--primary);                 /* matches progress/brand color */
+}
+
+/* Song list item interaction */
+.song-item:hover {
+  background: var(--highlight-bg);       /* soft green hover background */
+  cursor: pointer;
+}
+
+.song-item.playing {
+  background: var(--highlight-active);   /* slightly darker green active */
+  border-left: 3px solid var(--primary);
+}
